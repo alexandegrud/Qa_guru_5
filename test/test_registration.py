@@ -1,10 +1,10 @@
 from selene.support.shared import browser
-from selene import be, have
+from selene import be, have, command
 import os
 
 browser.config.hold_browser_open = True
 
-def test_student_registration_form():
+def test_student_registration_form(practice_form_open_browser):
     # Данные пользователя
     browser.open('https://demoqa.com/automation-practice-form')
     browser.element('#firstName').type('Alexander')
@@ -24,11 +24,12 @@ def test_student_registration_form():
     # Хобби и фото
     browser.element('#subjectsInput').type('English').press_enter()
     browser.element('[for="hobbies-checkbox-2"]').click()
-    browser.element('#uploadPicture').send_keys(os.path.abspath('pict\Guru_test.jpg'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../pict/Guru_test.jpg'))
 
 
     # Адресс
     browser.element('#currentAddress').type('улица Шостаковича')
+    browser.element('#submit').perform(command.js.scroll_into_view)
     browser.element('#state').click()
     browser.element('#react-select-3-input').press_enter()
     browser.element('#city').click()
@@ -47,7 +48,4 @@ def test_student_registration_form():
         'Reading',
         'Guru_test.jpg',
         'улица Шостаковича',
-        'Uttar Pradesh Agra'))
-
-
-
+        'Haryana Karnal'))
