@@ -6,7 +6,7 @@ browser.config.hold_browser_open = True
 
 def test_student_registration_form(practice_form_open_browser):
     # Данные пользователя
-    browser.open('https://demoqa.com/automation-practice-form')
+    browser.open('/automation-practice-form')
     browser.element('#firstName').type('Alexander')
     browser.element('#lastName').type('Grudinkin')
     browser.element('#userEmail').type('grudalex@mail.ru')
@@ -31,9 +31,9 @@ def test_student_registration_form(practice_form_open_browser):
     browser.element('#currentAddress').type('улица Шостаковича')
     browser.element('#submit').perform(command.js.scroll_into_view)
     browser.element('#state').click()
-    browser.element('#react-select-3-input').press_enter()
+    browser.element('#react-select-3-input').type('Haryana').press_enter()
     browser.element('#city').click()
-    browser.element('#react-select-4-input').press_enter()
+    browser.element('#react-select-4-input').type('Karnal').press_enter()
     browser.element('#submit').press_enter()
 
 
